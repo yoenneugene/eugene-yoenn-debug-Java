@@ -15,18 +15,24 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	private String filepath = "/home/yenx/Documents/eugene-yoenn-debug-Java/Project02Eclipse/symptoms.txt";
 	
 	/**
-	 * 
+	 *  Constructor with parameter string of filepath
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
 	 */
 	public ReadSymptomDataFromFile (String filepath) {
 		this.setFilepath(filepath);
 	}
 
+	/**
+	 * constructor by default
+	 */
 	public ReadSymptomDataFromFile() {
 
 	}
 
-
+	/**
+	 * Function who read file and create a list of result
+	 * @return
+	 */
 	@Override
 	public List<String> GetSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
