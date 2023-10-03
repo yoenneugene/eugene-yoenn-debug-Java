@@ -12,23 +12,28 @@ import java.util.List;
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filepath;
+	private String filepath = "/home/yenx/Documents/eugene-yoenn-debug-Java/Project02Eclipse/symptoms.txt";
 	
 	/**
 	 * 
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
 	 */
 	public ReadSymptomDataFromFile (String filepath) {
-		this.filepath = filepath;
+		this.setFilepath(filepath);
 	}
-	
+
+	public ReadSymptomDataFromFile() {
+
+	}
+
+
 	@Override
 	public List<String> GetSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
 		
-		if (filepath != null) {
+		if (getFilepath() != null) {
 			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
+				BufferedReader reader = new BufferedReader (new FileReader(getFilepath()));
 				String line = reader.readLine();
 				
 				while (line != null) {
@@ -44,4 +49,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		return result;
 	}
 
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
 }
