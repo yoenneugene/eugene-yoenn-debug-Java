@@ -12,9 +12,9 @@ public class AnalyticsCounter {
     ISymptomWriter symptomWriter ;
 
     /**
-     * constructor
-     * @param reader object from class ReadSymtom
-     * @param writer object from class Writesymtom
+     *
+     * @param reader
+     * @param writer
      */
     public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
       symptomReader = reader ;
@@ -24,9 +24,8 @@ public class AnalyticsCounter {
     }
 
     /**
-     *  this method sort a map alphabticly
+     *  this method sort a map alphabetically
      * @param symptoms map of symptoms
-     * @return
      */
     public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
         TreeMap<String, Integer> sorted = new TreeMap<>();
@@ -36,12 +35,12 @@ public class AnalyticsCounter {
     }
 
     /**
-     * this method is for counting symtoms
-     * @return mapbysymmtoms map os symtoms with count
+     * this method is for counting symptoms
+     * @return mapbysymmtoms map os symptoms with count
      */
     public Map<String, Integer> countSymtoms(List<String>symptoms) {
 
-        int count = 0;
+
         Map<String, Integer> mapbysymptoms = new HashMap<>();
 
         //do things to get the Map built
