@@ -1,19 +1,20 @@
 package com.hemebiotech.analytics;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * main class
  */
 public class Main {
-    /**
-     * Fonction qui execute le programme dans l'ordre
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String args[]) throws Exception {
+
+    public static void main(String[] args) throws Exception {
         ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile();
         WriteSymptomDataToFile writeSymptomDataToFile = new WriteSymptomDataToFile();
         AnalyticsCounter analyticsCounter = new AnalyticsCounter(readSymptomDataFromFile, writeSymptomDataToFile);
-        writeSymptomDataToFile.writeSymptoms(analyticsCounter.sortSymptoms(analyticsCounter.countSymtoms()));
-
+        List<String> symptoms = analyticsCounter.getSymptoms();
+        Map<String, Integer> counted = analyticsCounter.countSymtoms(symptoms);
+        Map<String, Integer> sorted = analyticsCounter.sortSymptoms(counted);
+        analyticsCounter.writeSymptoms(sorted);
     }
 }

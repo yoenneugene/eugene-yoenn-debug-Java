@@ -39,7 +39,7 @@ public class WriteSymptomDataToFile extends ReadSymptomDataFromFile implements I
 
         try {
             for (Map.Entry<String, Integer> entry : symptoms.entrySet())
-                writer.write(entry.getKey() + entry.getValue() + "\n");
+                writer.write(entry.getKey() + " " +entry.getValue() + "\n");
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);

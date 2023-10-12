@@ -1,18 +1,15 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+
+import java.io.IOException;
+import java.util.*;
 
 /**
- *  Analyse la liste de symptoms
+ *  Analyse la list de symptoms
  */
 public class AnalyticsCounter {
-    ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile();
+    ISymptomReader symptomReader;
+    ISymptomWriter symptomWriter ;
 
     /**
      * constructor
@@ -20,10 +17,9 @@ public class AnalyticsCounter {
      * @param writer object from class Writesymtom
      */
     public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
-        ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile();
-        reader = readSymptomDataFromFile;
-        WriteSymptomDataToFile writeSymptomDataToFile = new WriteSymptomDataToFile();
-        writer = writeSymptomDataToFile;
+      symptomReader = reader ;
+      symptomWriter = writer;
+
 
     }
 
@@ -43,21 +39,36 @@ public class AnalyticsCounter {
      * this method is for counting symtoms
      * @return mapbysymmtoms map os symtoms with count
      */
-    public Map<String, Integer> countSymtoms() {
-        String symptoms;
+    public Map<String, Integer> countSymtoms(List<String>symptoms) {
+
         int count = 0;
         Map<String, Integer> mapbysymptoms = new HashMap<>();
 
         //do things to get the Map built
-        for (String result : readSymptomDataFromFile.GetSymptoms()) {
-            String line = result;
-            count = Collections.frequency(readSymptomDataFromFile.GetSymptoms(), line);
+        for (String symptom : symptoms) {
 
-            mapbysymptoms.put(result, count);
-            System.out.println(result);
+            mapbysymptoms.putIfAbsent(symptom,1);
+            int n = mapbysymptoms.get(symptom);
+            mapbysymptoms.put(symptom,n+1);
+
         }
         return mapbysymptoms;
     }
 
+    /**
+     *
+     * @return
+     */
+    public List<String> getSymptoms() {
+        return symptomReader.GetSymptoms();
+    }
 
+    /**
+     *
+     * @param symptoms
+     * @throws IOException
+     */
+    public void writeSymptoms(Map<String, Integer> symptoms) throws IOException {
+        symptomWriter.writeSymptoms(symptoms);
+    }
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * Simple brute force implementation
  *
  */
-public class ReadSymptomDataFromFile implements ISymptomReader {
+public class ReadSymptomDataFromFile implements ISymptomReader  {
 
 	private String filepath = "/home/yenx/Documents/eugene-yoenn-debug-Java/Project02Eclipse/symptoms.txt";
 	
